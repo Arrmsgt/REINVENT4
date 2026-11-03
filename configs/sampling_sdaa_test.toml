@@ -1,0 +1,10 @@
+run_type = "sampling"
+device = "sdaa:0"
+seed = 42
+
+[parameters]
+model_file = "priors/reinvent_pubchem.prior"
+output_file = "sampling_sdaa_seed42.csv"
+num_smiles = 50
+unique_molecules = true
+randomize_smiles = true

@@ -1,0 +1,28 @@
+﻿torch==2.12.0
+torchvision==0.27.0
+tensorboard==2.21.0
+rdkit==2026.9.1
+numpy==2.5.3
+pumas==1.3.0
+MolVS==0.1.1
+xxhash==3.8.2
+pydantic==2.13.4
+python-dotenv==1.2.2
+matplotlib==3.11.2
+apted==1.0.3
+mmpdb==2.1
+pandas==3.0.6
+polars==2.1.0
+pillow==12.3.0
+PyYAML==6.0.3
+requests==2.34.2
+tqdm==4.68.3
+scipy==1.18.0
+
+# 以下非纯 pip 项：
+# torch==2.12.0   —— SDAA 构建版（torch_sdaa 3.3.0），需配合 /opt/tecoai/setvars.sh
+# rdkit==2026.9.1 —— loongarch64 无官方 wheel，本机源码重编（含 InChI，自包含 .libs），
+#                    见 REINVENT_SDAA_ADAPTATION.md 第五节
+# mmpdb==2.1      —— 必须 2.x，3.x 删除了 mmpdblib.do_fragment 模块
+# polars==2.1.0   —— 声明要求为 <2，但本机降级失败（polars-runtime-32 编译失败），
+#                    实测 2.1.0 下 sampling / 打分正常；若跑 transfer learning 数据管线需注意

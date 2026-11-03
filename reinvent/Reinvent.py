@@ -108,6 +108,9 @@ def main(args: Any):
     if torch.cuda.is_available():
         logger.info(f"Number of PyTorch CUDA devices {torch.cuda.device_count()}")
 
+    if getattr(torch, "sdaa", None) is not None and torch.sdaa.is_available():
+        logger.info(f"Number of PyTorch SDAA devices {torch.sdaa.device_count()}")
+
     device = getattr(val_config, "device", None)
 
     if not device:

@@ -35,6 +35,8 @@ def set_seed(seed: int):
 
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
+    if getattr(torch, "sdaa", None) is not None and torch.sdaa.is_available():
+        torch.sdaa.manual_seed(seed)
     torch.backends.cudnn.deterministic = True
 
 

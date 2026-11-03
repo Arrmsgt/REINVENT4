@@ -25,3 +25,8 @@ mprofile_*.dat
 # Notebooks
 .ipynb_checkpoints/
 *.ipynb
+
+# SDAA adaptation: model weights and run outputs
+priors/
+sampling_*.csv
+*.prior

@@ -9,7 +9,7 @@
 
 
 run_type = "staged_learning"
-device = "cuda:0"  # set torch device e.g. "cpu"
+device = "sdaa:0"  # set torch device e.g. "cpu"
 tb_logdir = "tb_logs"  # name of the TensorBoard logging directory
 json_out_config = "_staged_learning.json"  # write this TOML to JSON
 

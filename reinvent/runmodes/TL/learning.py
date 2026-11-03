@@ -191,11 +191,18 @@ class Learning(ABC):
 
             mean_nll = self.train_epoch()
 
-            if self.device == "cuda":
-                free_memory, total_memory = torch.cuda.mem_get_info()
+            # NOTE (SDAA adaptation): report device memory for both CUDA and SDAA
+            dev_type = getattr(self.device, "type", str(self.device)).split(":")[0]
+            mem_info = None
+            if dev_type == "cuda":
+                mem_info = torch.cuda.mem_get_info()
+            elif dev_type == "sdaa":
+                mem_info = torch.sdaa.mem_get_info()
+            if mem_info is not None:
+                free_memory, total_memory = mem_info
                 used_memory = total_memory - free_memory
                 logger.info(
-                    f"{used_memory // 1024 ** 2} MiB GPU memory used " f"in epoch {epoch_no}"
+                    f"{used_memory // 1024 ** 2} MiB device memory used " f"in epoch {epoch_no}"
                 )
 
             if epoch_no % self.save_freq == 0 or epoch_no == end_epoch:
